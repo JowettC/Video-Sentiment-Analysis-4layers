@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h1 class="display-4 text-center">Video Analysis</h1>
+<br>
+<br>
+<br>
+
+<div class="container">
+	  <div class="row">
+
+	<div class="col">
+    <form action="/predict" id="upload-file" method="post" enctype="multipart/form-data">
+    	
+        <label for="videoUpload" class="upload-label">
+            <h3>Upload a video file here</h3>
+        </label>
+    
+        <input type="file" name="file" id="videoUpload" required="True">
+        <br> 
+        <br>
+    	<input type="submit" class="btn btn-primary btn-lg" value="Submit"> 
+    </form>
+	</div>
+	<div class="col">
+    <h2 class="text-center">OR</h2>
+</div>
+    <div class="col">
+    <form action="/predict" method="post" >
+        <label for="capture" class="upload-label">
+            <h3>Record a video for analysis</h3>
+        </label>
+        <br>
+        <br>
+    	<input type="submit" id="capture" class="btn btn-primary btn-lg" value="Capture video"> 
+    </form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

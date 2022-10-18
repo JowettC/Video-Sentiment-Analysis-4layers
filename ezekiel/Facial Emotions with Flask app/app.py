@@ -65,28 +65,24 @@ def upload():
             
 
             # extract audio
-            mp4_to_mp3(basepath + "\\uploads\\" + f.filename, "temptaudiofile.mp3", basepath)
+            mp4_to_mp3(basepath + "\\uploads\\" + f.filename, "temptaudiofile.wav", basepath)
 
             # find music attributes of audio
-            artist, title = (postRequest("temptaudiofile.mp3"))
+            artist, title = (postRequest("temptaudiofile.wav"))
             # run model that takes in artist and title
             print(artist,title)
             
             # audio to text
-            # convert mp3 file to wav
-            # print("path --" + basepath + "\\uploads\\temptaudiofile.mp3")
-            sound = AudioSegment.from_mp3("temptaudiofile.mp3")                                                       
-            # sound = AudioSegment.from_mp3(basepath + "\\uploads\\temptaudiofile.mp3")
-            sound.export(basepath + "\\uploads\\temptaudiofile.wav", format="wav")
             r = sr.Recognizer()
             with sr.AudioFile("C:\\Users\\PM\\OneDrive\\Documents\\GitHub\\MLA-project\\ezekiel\\Facial Emotions with Flask app\\uploads\\temptaudiofile.wav") as source:
                 # listen for the data (load audio to memory)
                 audio_data = r.record(source)
                 # recognize (convert from speech to text)
                 text = r.recognize_google(audio_data)
-                print("audio to text" + text)
-
-
+                # print("audio to text: --- " + text)
+            #  run model that takes in text
+            print(text)
+            
             # running vidframe with the uploaded video
             result, face = vidframe(file_path)
 

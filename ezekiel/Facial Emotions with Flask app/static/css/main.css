@@ -1,0 +1,67 @@
+.main-title{
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+    color: black;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+body{
+    font-family: 'Lobster', cursive !important;
+}
+.container{
+    min-height: 100vh;
+}
+.section{
+    padding-top:50px;
+    padding-bottom:50px;
+}
+
+
+/* type writter */
+/* GLOBAL STYLES */
+.parent{
+    display:flex;
+    justify-content: center;
+}
+  /* DEMO-SPECIFIC STYLES */
+  .typewriter h1 {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(30, end),
+      blink-caret .5s step-end infinite;
+  }
+  
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+  }
+
+.section{
+    padding-left:10%;
+    padding-right:10%;
+    text-align:center
+}
+.music-section{
+    background-color: rgb(190, 240, 240);
+}
+.text-section{
+    background-color: rgb(240, 190, 232);
+}
+.emotion-section{
+    background-color: rgb(240, 240, 190);
+}
+.title{
+    text-decoration: underline;
+}

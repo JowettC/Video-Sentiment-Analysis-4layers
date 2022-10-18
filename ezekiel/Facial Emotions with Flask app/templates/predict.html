@@ -1,32 +1,69 @@
 {% extends 'base.html' %}
 {% block body %}
-<h1 class="display-4 text-center">Video Analysis</h1>
+<div class="parent">
+  <div class="typewriter">
+    <h1 class="display-4 text-center main-title">Video Analysis</h1>
+  </div>
+</div>
 <br>
 
-<div class="container">
-	  <div class="row">
+<div class="main-display">
+  <div class="section emotion-section">
+    <h2 class="title">Emotions Indicator</h2>
+    <div class="col">
+      <h3> Pie Chart:</h3>
 
-	<div class="col">
-    <h1> Pie Chart:</h1> 
-
-    <img src="data:image/png;base64, {{ plot_url }}" class="img-fluid" alt="Image Placeholder">
-</div>
-<div class="row text-center">
-	<table class="table table-borderless">
-		<thead>&nbsp;</thead>
-  	<thead>
-    <tr>
-      <th scope="col">
-    <h1> Smile Index: {{ smileindex }}</h1>
-    </th>
-	</tr>
-	</thead>
-	<thead>
-    <tr>
-      <th scope="col">
-    <h1>Posture: {{ posture }}
-    </h1>
-    </th>
-	</tr>
-	</thead>
-{% endblock %}
+      <img src="data:image/png;base64, {{ plot_url }}" class="img-fluid" alt="Image Placeholder">
+    </div>
+    <div class="row text-center">
+      <table class="table table-borderless">
+        <thead>&nbsp;</thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3> Smile Index: {{ smileindex }}</h3>
+            </th>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3>Posture: {{ posture }}
+              </h3>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="section music-section">
+    <h2 class="title">Music Indicator</h2>
+    <div class="row text-center">
+      <table class="table table-borderless">
+        <thead>&nbsp;</thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3> Music Status: {{ musicStatus }}</h3>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="section text-section">
+    <h2 class="title">Text Indicator</h2>
+    <div class="row text-center">
+      <table class="table table-borderless">
+        <thead>&nbsp;</thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3> Text Status: {{ textStatus }}</h3>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  {% endblock %}

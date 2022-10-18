@@ -8,7 +8,7 @@
 <br>
 
 <div class="main-display">
-  <div class="section emotion-section">
+  <div class= "section emotion-section" data-aos="zoom-in">
     <h2 class="title">Emotions Indicator</h2>
     <div class="col">
       <h3> Pie Chart:</h3>
@@ -21,14 +21,14 @@
         <thead>
           <tr>
             <th scope="col">
-              <h3> Smile Index: {{ smileindex }}</h3>
+              <h3> Smile Index: <div class ="status-content"> <span>{{ smileindex }}</span><span>{{ smileindex }}</span></div></h3>
             </th>
           </tr>
         </thead>
         <thead>
           <tr>
             <th scope="col">
-              <h3>Posture: {{ posture }}
+              <h3>Posture: <div class ="status-content"><span>{{ posture }}</span><span>{{ posture }}</span></div>
               </h3>
             </th>
           </tr>
@@ -36,7 +36,7 @@
       </table>
     </div>
   </div>
-  <div class="section music-section">
+  <div class="section music-section" data-aos="zoom-in">
     <h2 class="title">Music Indicator</h2>
     <div class="row text-center">
       <table class="table table-borderless">
@@ -44,14 +44,14 @@
         <thead>
           <tr>
             <th scope="col">
-              <h3> Music Status: {{ musicStatus }}</h3>
+              <h3> Music Status: <div class ="status-content"><span>{{ musicStatus }}</span><span>{{ musicStatus }}</span></div></h3>
             </th>
           </tr>
         </thead>
       </table>
     </div>
   </div>
-  <div class="section text-section">
+  <div class="section text-section" data-aos="zoom-in">
     <h2 class="title">Text Indicator</h2>
     <div class="row text-center">
       <table class="table table-borderless">
@@ -59,7 +59,7 @@
         <thead>
           <tr>
             <th scope="col">
-              <h3> Text Status: {{ textStatus }}</h3>
+              <h3> Text Status: <div class ="status-content"><span>{{ textStatus }}</span><span>{{ textStatus }}</span></div></h3>
             </th>
           </tr>
         </thead>

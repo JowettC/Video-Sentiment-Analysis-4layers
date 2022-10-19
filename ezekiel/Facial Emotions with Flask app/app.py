@@ -4,7 +4,7 @@ from turtle import title
 import numpy as np
 from predictemt import pred, removeout, vidframe, ssimscore1
 from flask import Flask, request, render_template, flash, redirect
-
+import pickle
 from werkzeug.utils import secure_filename
 import shutil
 from tensorflow.keras.models import model_from_json
@@ -15,6 +15,7 @@ from matplotlib import pyplot as plt
 import io
 import base64
 import urllib
+from models.music_sentiment.music_mood_prediction import get_song
 
 # video to audio
 import moviepy
@@ -43,7 +44,8 @@ app.secret_key = 'some secret key'
 
 def mp4_to_mp3(mp4, mp3, path):     
                 mp4_without_frames = AudioFileClip(mp4)     
-                mp4_without_frames.write_audiofile(path + "\\uploads\\" +mp3)     
+                writePath = os.path.join(path,"uploads",mp3)
+                mp4_without_frames.write_audiofile(writePath)     
                 mp4_without_frames.close() 
 
 @app.route('/', methods=['GET'])
@@ -65,22 +67,27 @@ def upload():
             
 
             # extract audio
-            mp4_to_mp3(basepath + "\\uploads\\" + f.filename, "temptaudiofile.wav", basepath)
+            
+            mp4_to_mp3(os.path.join(basepath,"uploads", f.filename), "temptaudiofile.wav", basepath)
 
             # find music attributes of audio
             artist, title = (postRequest("temptaudiofile.wav"))
             # run model that takes in artist and title
-            print(artist,title)
-            musicStatus = "Positive"
+
+            model = pickle.load(open('./models/music_sentiment/LSVC_best.pkl', 'rb'))
+            musicStatus = get_song(artist,title,model)
+            musicDetails = [artist,title]
             
             # audio to text
             r = sr.Recognizer()
-            with sr.AudioFile("C:\\Users\\PM\\OneDrive\\Documents\\GitHub\\MLA-project\\ezekiel\\Facial Emotions with Flask app\\uploads\\temptaudiofile.wav") as source:
+            pathToWav = os.path.join(basepath,"uploads","temptaudiofile.wav")
+            with sr.AudioFile(pathToWav) as source:
                 # listen for the data (load audio to memory)
                 audio_data = r.record(source)
                 # recognize (convert from speech to text)
                 text = r.recognize_google(audio_data)
                 # print("audio to text: --- " + text)
+
             #  run model that takes in text
             print(text)
             textStatus = "Positive"
@@ -135,7 +142,7 @@ def upload():
         # piechart object that can be returned to the html
         plot_data = urllib.parse.quote(base64.b64encode(img.read()).decode())
         # returning all the three variable that can be displayed in html
-        return render_template("predict.html", posture=posture, smileindex=smileindex, plot_url=plot_data, musicStatus = musicStatus, textStatus = textStatus)
+        return render_template("predict.html", posture=posture, smileindex=smileindex, plot_url=plot_data, musicStatus = musicStatus, musicDetails=musicDetails, textStatus = textStatus)
     return None
 
 

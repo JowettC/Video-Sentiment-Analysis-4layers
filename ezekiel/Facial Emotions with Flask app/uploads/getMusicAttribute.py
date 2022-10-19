@@ -11,7 +11,8 @@ def postRequest(filename):
     'api_token': '53974634fb430490fdbbf8254b2964aa',
     'return': 'apple_music,spotify',
     }
-    path = os.getcwd()+ "\\uploads\\" + filename
+    
+    path = os.path.join(os.getcwd(), "uploads" , filename)
     # print("path: " + os.getcwd())
     files = {
         'file': open(path, 'rb'),

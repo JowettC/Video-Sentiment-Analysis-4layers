@@ -2,16 +2,19 @@ import pickle
 import numpy as np 
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-
+import os
+from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+
+load_dotenv()
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
-    client_id="3f27ae63f74843ba9f372448388ae599",
-    client_secret="6eb7aef667d54862b6b62dec2c921e29"))
+    client_id=os.getenv('CLIENT_ID'),
+    client_secret=os.getenv('CLIENT_SECRET')))
 
 # Get Scaler_fit object to fit one dataset
 def get_scaler_fitted():
-    df = pd.read_csv("songs_default.csv")
+    df = pd.read_csv("./weihern/songs_default.csv")
     df['mood'] = df['mood'].replace(['calm', 'happy','angry','depress'], [1,1,0,0])
     df.drop_duplicates(subset=['name', 'artist', 'mood'], keep='last',inplace=True)
     col_features = df.columns[7:-3]
@@ -77,7 +80,7 @@ def get_song(artist,track,model):
     return mood 
 
 def main():
-    model = pickle.load(open('LSVC_best.pkl', 'rb'))
+    model = pickle.load(open('./weihern/LSVC_best.pkl', 'rb'))
     check_list = [('Vampire Weekend','A-Punk'),('Linkin Park','Battle Symphony'),
               ('The Fratellis','Chelsea Dagger'),('Justin Bieber','Peaches'),
               ('MKTO','Classic'),('Pharrell Williams','Happy'),('Ed Sheeran','Photograph'),

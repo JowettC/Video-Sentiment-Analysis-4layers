@@ -16,19 +16,17 @@ import io
 import base64
 import urllib
 from models.music_sentiment.music_mood_prediction import get_song
-
 # video to audio
 import moviepy
 from moviepy.editor import *
-
 # audio to text
 import speech_recognition as sr
-
 # get audio attribute
 from uploads.getMusicAttribute import *
-
 # convert mp3 file to wav        
 from pydub import AudioSegment
+# text analysis
+from models.text_analysis.text_sentiment import predict
 
 
 
@@ -94,24 +92,13 @@ def upload():
                 # print("audio to text: --- " + text)
 
             #  run model that takes in text
-            print(text)
+            # print(text)
             textDetails = text
-            textStatus = "Positive"
+            textStatus = predict(text)
             # running vidframe with the uploaded video
             result, face = vidframe(file_path)
-            
-
-
-
-
-            
             # removing the video as we dont need it anymore
             os.remove(file_path)
-            
-            
-
-
-            
     
         else:
             result, face = vidframe(0)

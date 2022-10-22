@@ -5,7 +5,16 @@
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 	<!-- for text animation -->
 	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <title>Video Analysis</title>
+ <script type="text/javascript">
+    function loading() {
+		console.log("test")
+		document.getElementById("loading").style.display = "block";
+        // $("#loading").show();
+		document.getElementById("content-main").style.display = "none";
+    }
+</script>
 </head>
 <body>
 		<br/><br/>
@@ -15,5 +24,6 @@
   <script>
     AOS.init();
   </script>
+  
 </body>
 </html>

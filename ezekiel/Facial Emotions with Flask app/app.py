@@ -52,6 +52,11 @@ def mp4_to_mp3(mp4, mp3, path):
 def index():
     return render_template('index.html')
 
+@app.route('/loading', methods=['GET'])
+def loading():
+    return render_template('loading.html')
+
+
 
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():

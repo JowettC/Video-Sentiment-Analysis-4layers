@@ -90,6 +90,7 @@ def upload():
 
             #  run model that takes in text
             print(text)
+            textDetails = text
             textStatus = "Positive"
             # running vidframe with the uploaded video
             result, face = vidframe(file_path)
@@ -142,7 +143,7 @@ def upload():
         # piechart object that can be returned to the html
         plot_data = urllib.parse.quote(base64.b64encode(img.read()).decode())
         # returning all the three variable that can be displayed in html
-        return render_template("predict.html", posture=posture, smileindex=smileindex, plot_url=plot_data, musicStatus = musicStatus, musicDetails=musicDetails, textStatus = textStatus)
+        return render_template("predict.html", posture=posture, smileindex=smileindex, plot_url=plot_data, musicStatus = musicStatus, musicDetails=musicDetails, textStatus = textStatus, textDetails = textDetails)
     return None
 
 

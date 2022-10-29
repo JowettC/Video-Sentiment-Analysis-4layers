@@ -1,6 +1,6 @@
 import sys
 import os
-from turtle import title
+from turtle import pos, title
 import numpy as np
 from predictemt import pred, removeout, vidframe, ssimscore1
 from flask import Flask, request, render_template, flash, redirect
@@ -54,6 +54,28 @@ def index():
 def loading():
     return render_template('loading.html')
 
+def getResults(result):
+    for word in result:
+        word = word.upper()
+    posCount = result.count("POSITIVE")
+    negCount = result.count("NEGATIVE")
+    print(result)
+    if "UNKNOWN" in result:
+        if(posCount > negCount):
+            return "POSITIVE"
+        elif(negCount > posCount):
+            return "NEGATIVE"
+        else:
+            return "MIXED"
+    else:
+        if posCount == 1:
+            return "MIXED POSITIVE"
+        elif negCount == 1:
+            return "MIXED POSITIVE"
+        elif posCount == 3:
+            return "POSITIVE"
+        else:
+            return "NEGATIVE"
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -67,19 +89,26 @@ def upload():
             file_path = os.path.join(
                 basepath, 'uploads', secure_filename(f.filename))
             f.save(file_path)  # saving uploaded video
-            
+            # positive, negative, mixed postive and mix negative
+            overallResult = []
 
             # extract audio
             
             mp4_to_mp3(os.path.join(basepath,"uploads", f.filename), "temptaudiofile.wav", basepath)
-
+            try:
             # find music attributes of audio
-            artist, title = (postRequest("temptaudiofile.wav"))
+                artist, title = (postRequest("temptaudiofile.wav"))
             # run model that takes in artist and title
 
-            model = pickle.load(open('./models/music_sentiment/LSVC_best.pkl', 'rb'))
-            musicStatus = get_song(artist,title,model)
-            musicDetails = [artist,title]
+                model = pickle.load(open('./models/music_sentiment/LSVC_best.pkl', 'rb'))
+           
+                musicStatus = get_song(artist,title,model)
+                musicDetails = [artist,title]
+                overallResult.append(musicStatus.upper())
+            except:
+                musicStatus = "Unknown"
+                musicDetails = ["Unknown","Unknown"]
+                overallResult.append("UNKNOWN")
             
             # audio to text
             r = sr.Recognizer()
@@ -95,10 +124,11 @@ def upload():
             # print(text)
             textDetails = text
             textStatus = predict(text)
+            overallResult.append(textStatus.upper())
             # running vidframe with the uploaded video
             result, face = vidframe(file_path)
             # removing the video as we dont need it anymore
-            os.remove(file_path)
+            # os.remove(file_path)
     
         else:
             result, face = vidframe(0)
@@ -108,6 +138,10 @@ def upload():
 
         except:
             smileindex = 0
+        if (smileindex >= 0.5):
+            overallResult.append("POSTIVE")
+        else:
+            overallResult.append("NEGATIVE")
 
         # calculating similarityscore for images
         ssimscore = [ssimscore1(i, j) for i, j in zip(face[: -1], face[1:])]
@@ -125,7 +159,7 @@ def upload():
                     result.count('fear') + result.count('sad'))/4
         temp_counts = [positive, negative]
         # this is the result for emotion recognition
-        print("count:" + str(temp_counts))
+        # print("count:" + str(temp_counts))
         #counts = [result.count('angry'),result.count('disgust'),result.count('fear'),result.count('happy'),result.count('sad')]
         ax.pie(temp_counts, labels=temp_emotions,
                autopct='%1.2f%%')  # adding pie chart
@@ -135,7 +169,8 @@ def upload():
         # piechart object that can be returned to the html
         plot_data = urllib.parse.quote(base64.b64encode(img.read()).decode())
         # returning all the three variable that can be displayed in html
-        return render_template("predict.html", posture=posture, smileindex=smileindex, plot_url=plot_data, musicStatus = musicStatus, musicDetails=musicDetails, textStatus = textStatus, textDetails = textDetails)
+
+        return render_template("predict.html", posture=posture, smileindex=smileindex, plot_url=plot_data, musicStatus = musicStatus, musicDetails=musicDetails, textStatus = textStatus, textDetails = textDetails, result = getResults(overallResult))
     return None
 
 

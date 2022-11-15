@@ -1,4 +1,4 @@
-"# MLA-project" 
+# MLA-project
 
 ## How to run the project
 1. Create your python virtual environment - (Optional)

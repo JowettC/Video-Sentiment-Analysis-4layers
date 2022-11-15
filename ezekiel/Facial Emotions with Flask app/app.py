@@ -111,24 +111,30 @@ def upload():
                 overallResult.append("UNKNOWN")
             
             # audio to text
-            r = sr.Recognizer()
-            pathToWav = os.path.join(basepath,"uploads","temptaudiofile.wav")
-            with sr.AudioFile(pathToWav) as source:
-                # listen for the data (load audio to memory)
-                audio_data = r.record(source)
-                # recognize (convert from speech to text)
-                text = r.recognize_google(audio_data)
-                # print("audio to text: --- " + text)
+            try:
+                r = sr.Recognizer()
+                pathToWav = os.path.join(basepath,"uploads","temptaudiofile.wav")
+                with sr.AudioFile(pathToWav) as source:
+                    # listen for the data (load audio to memory)
+                    audio_data = r.record(source)
+                    # recognize (convert from speech to text)
+                    text = r.recognize_google(audio_data)
+                    # print("audio to text: --- " + text)
 
-            #  run model that takes in text
-            # print(text)
-            textDetails = text
-            textStatus = predict(text)
-            overallResult.append(textStatus.upper())
+                #  run model that takes in text
+                # print(text)
+                textDetails = text
+                textStatus = predict(text)
+                overallResult.append(textStatus.upper())
+            except: 
+                textStatus = "UNKNOWN"
+                textDetails = "UNKNOWN"
+                overallResult.append("UNKNOWN")
             # running vidframe with the uploaded video
             result, face = vidframe(file_path)
             # removing the video as we dont need it anymore
             # os.remove(file_path)
+            
     
         else:
             result, face = vidframe(0)
@@ -137,11 +143,13 @@ def upload():
             smileindex = round(smileindex, 2)
 
         except:
-            smileindex = 0
-        if (smileindex >= 0.5):
-            overallResult.append("POSTIVE")
-        else:
-            overallResult.append("NEGATIVE")
+            smileindex = "UNKNOWN"
+            overallResult.append("UNKNOWN")
+        if (smileindex != "UNKNOWN"):
+            if smileindex > 0.5:
+                overallResult.append("POSITIVE")
+            else:
+                overallResult.append("NEGATIVE")
 
         # calculating similarityscore for images
         ssimscore = [ssimscore1(i, j) for i, j in zip(face[: -1], face[1:])]
@@ -161,13 +169,18 @@ def upload():
         # this is the result for emotion recognition
         # print("count:" + str(temp_counts))
         #counts = [result.count('angry'),result.count('disgust'),result.count('fear'),result.count('happy'),result.count('sad')]
-        ax.pie(temp_counts, labels=temp_emotions,
+        try: 
+            ax.pie(temp_counts, labels=temp_emotions,
                autopct='%1.2f%%')  # adding pie chart
-        img = io.BytesIO()
-        plt.savefig(img, format='png')  # saving piechart
-        img.seek(0)
-        # piechart object that can be returned to the html
-        plot_data = urllib.parse.quote(base64.b64encode(img.read()).decode())
+            img = io.BytesIO()
+            plt.savefig(img, format='png')  # saving piechart
+            img.seek(0)
+            # piechart object that can be returned to the html
+            plot_data = urllib.parse.quote(base64.b64encode(img.read()).decode())
+        except:
+            smileindex = "UNKNOWN"
+            posture ="UNKNOWN"
+            plot_data="UNKNOWN"
         # returning all the three variable that can be displayed in html
 
         return render_template("predict.html", posture=posture, smileindex=smileindex, plot_url=plot_data, musicStatus = musicStatus, musicDetails=musicDetails, textStatus = textStatus, textDetails = textDetails, result = getResults(overallResult))

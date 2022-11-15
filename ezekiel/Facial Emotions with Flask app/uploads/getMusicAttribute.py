@@ -8,7 +8,7 @@ import requests
 # File must be in the same directory 
 def postRequest(filename):
     data = {
-    'api_token': '53974634fb430490fdbbf8254b2964aa',
+    'api_token': '7f9fb6ef0b39bed7ad74a03a5d14bd80',
     'return': 'apple_music,spotify',
     }
     

@@ -10,3 +10,7 @@
 ## Important to note 
 Some External modules/api require API token to access their services, they may have expired. List of modules that require API token are as follows:
 - https://docs.audd.io/#api-methods - get music attributes (title & artist, etc)
+
+- require env file to use spotipy API
+CLIENT_ID=""
+CLIENT_SECRET="""

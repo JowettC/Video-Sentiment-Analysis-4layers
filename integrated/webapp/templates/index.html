@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block body %}
+<div id="content-main">
+    <div class="parent">
+        <div class="typewriter">
+            <h1 class="display-4 text-center main-title">Video Analysis</h1>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-4 profile-warpper" data-aos="zoom-in" data-aos-duration="1500">
+                <div class="warp">
+                    <img src="../static/images/wh.png" class="profile-pic">
+                    <div class="sub-title name"> Wei Hern</div>
+                    <div class="sub-title desc"> Shh.. Don't tell people i have covid</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 profile-warpper" data-aos="zoom-in" data-aos-duration="2000">
+                <div class="warp">
+                    <img src="../static/images/ys.png" class="profile-pic">
+                    <div class="sub-title name"> Yee Sen</div>
+                    <div class="sub-title desc"> I use smu chat bot to scold people</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 profile-warpper" data-aos="zoom-in"  data-aos-duration="2500">
+                <div class="warp">
+                    <img src="../static/images/e.png" class="profile-pic">
+                    <div class="sub-title name"> Ezekiel</div>
+                    <div class="sub-title desc"> I take free breakfast from lazada</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 profile-warpper" data-aos="zoom-in"  data-aos-duration="3000">
+                <div class="warp">
+                    <img src="../static/images/r.png" class="profile-pic">
+                    <div class="sub-title name"> Richard</div>
+                    <div class="sub-title desc"> Huh? This one tested ah?</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 profile-warpper" data-aos="zoom-in"  data-aos-duration="3000">
+                <div class="warp">
+                    <img src="../static/images/jc.png" class="profile-pic">
+                    <div class="sub-title name"> Jowett </div>
+                    <div class="sub-title desc"> Why haven't break yet?</div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 profile-warpper" data-aos="zoom-in"  data-aos-duration="3000">
+                <div class="warp">
+                    <img src="../static/images/b.png" class="profile-pic">
+                    <div class="sub-title name"> Benjamin</div>
+                    <div class="sub-title desc"> Why my group mate don't know how i look like until week 7</div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col">
+                <form action="/predict" id="upload-file" method="post" enctype="multipart/form-data">
+
+                    <label for="videoUpload" class="upload-label">
+                        <h3>Upload a video file here</h3>
+                    </label>
+                    <br>
+                    <input type="file" name="file" id="videoUpload" required="True">
+                    <br>
+                    <br>
+                    <input type="submit" class="btn btn-primary btn-lg" value="Submit" onclick="loading();">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="loading-page" id ="loading">
+    <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <span>Loading</span>
+    </div>
+    <div class="words-wrapper">
+        <div class="word w1">Spliting Audio & Video</div>
+        <div class="word w2">Process Video using Computer Vision</div>
+        <div class="word w3">Extracting Music & Performing Sentiment Analysis </div>
+        <div class="word w4">Natural Language Processing</div>
+        <div class="word w5">Gathering Results</div>
+      </div>
+</div>
+
+</div>
+{% endblock %}

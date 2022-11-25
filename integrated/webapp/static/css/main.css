@@ -1,0 +1,411 @@
+.main-title {
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+    color: black;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+body {
+    font-family: 'Lobster', cursive !important;
+}
+
+.container {
+    min-height: 100vh;
+}
+
+.section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+
+/* type writter */
+/* GLOBAL STYLES */
+.parent {
+    display: flex;
+    justify-content: center;
+}
+
+/* DEMO-SPECIFIC STYLES */
+.typewriter h1 {
+    overflow: hidden;
+    /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange;
+    /* The typwriter cursor */
+    white-space: nowrap;
+    /* Keeps the content on a single line */
+    margin: 0 auto;
+    /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em;
+    /* Adjust as needed */
+    animation:
+        typing 3.5s steps(30, end),
+        blink-caret .5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange
+    }
+}
+
+.section {
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: center
+}
+
+.music-section {
+    background-color: rgb(190, 240, 240);
+}
+
+.text-section {
+    background-color: rgb(240, 190, 232);
+}
+
+.emotion-section {
+    background-color: rgb(240, 240, 190);
+}
+
+.title {
+    text-decoration: underline;
+}
+
+/* more animation */
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+.status-content {
+    position: relative;
+    height: 100px;
+}
+
+.status-content span {
+    font-family: "Poppins", sans-serif;
+    color: #fff;
+    font-size: 2em;
+    position: absolute;
+    transform: translate(-50%, 10%);
+}
+
+.status-content span:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px black;
+}
+
+.status-content span:nth-child(2) {
+    color: black;
+    animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+
+    0%,
+    100% {
+        clip-path: polygon(0% 45%,
+                16% 44%,
+                33% 50%,
+                54% 60%,
+                70% 61%,
+                84% 59%,
+                100% 52%,
+                100% 100%,
+                0% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0% 60%,
+                15% 65%,
+                34% 66%,
+                51% 62%,
+                67% 50%,
+                84% 45%,
+                100% 46%,
+                100% 100%,
+                0% 100%);
+    }
+}
+
+.profile-pic {
+    width: 100%;
+    height: auto;
+}
+
+.sub-title {
+    text-align: center
+}
+
+.name {
+    font-weight: bold;
+}
+
+.desc {
+    font-style: italic;
+}
+
+.profile-warpper {
+    margin-bottom: 10px;
+}
+
+#upload-file {
+    text-align: center;
+    padding: 20px;
+    background-color: antiquewhite
+}
+
+.loading-page {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background: radial-gradient(#c6e3ee, #9bbeec);
+}
+
+.wrapper {
+    width: 200px;
+    height: 60px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: grey;
+    left: 15%;
+    transform-origin: 50%;
+    animation: circle .5s alternate infinite ease;
+}
+
+@keyframes circle {
+    0% {
+        top: 60px;
+        height: 5px;
+        border-radius: 50px 50px 25px 25px;
+        transform: scaleX(1.7);
+    }
+
+    40% {
+        height: 20px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+
+    100% {
+        top: 0%;
+    }
+}
+
+.circle:nth-child(2) {
+    left: 45%;
+    animation-delay: .2s;
+}
+
+.circle:nth-child(3) {
+    left: auto;
+    right: 15%;
+    animation-delay: .3s;
+}
+
+.shadow {
+    width: 20px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left: 15%;
+    filter: blur(1px);
+    animation: shadow .5s alternate infinite ease;
+}
+
+@keyframes shadow {
+    0% {
+        transform: scaleX(1.5);
+    }
+
+    40% {
+        transform: scaleX(1);
+        opacity: .7;
+    }
+
+    100% {
+        transform: scaleX(.2);
+        opacity: .4;
+    }
+}
+
+.shadow:nth-child(4) {
+    left: 45%;
+    animation-delay: .2s
+}
+
+.shadow:nth-child(5) {
+    left: auto;
+    right: 15%;
+    animation-delay: .3s;
+}
+
+.wrapper span {
+    position: absolute;
+    top: 75px;
+    font-family: 'Lato';
+    font-size: 20px;
+    letter-spacing: 12px;
+    color: grey;
+    left: 15%;
+}
+
+
+
+div#loading {
+    display: none;
+}
+
+@font-face {
+    font-family: system;
+    font-style: normal;
+    font-weight: 600;
+    src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+.words-wrapper{
+    width:100%;
+    text-align:center;
+    position: absolute;
+    font-family: 'Lato';
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    color:grey;
+    transform: translate(-50%, -50%);
+}
+
+.word {
+    font-size: 1em;
+    font-weight: bold;
+    float: left;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.w1 {
+    animation: w1anim 15s infinite;
+}
+
+.w2 {
+    animation: w2anim 15s infinite;
+}
+
+.w3 {
+    animation: w3anim 15s infinite;
+}
+
+.w4 {
+    animation: w4anim 15s infinite;
+}
+
+.w5 {
+    animation: w5anim 15s infinite;
+}
+
+
+
+@keyframes w1anim {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    20% {
+        opacity: 0;
+    }
+}
+
+
+@keyframes w2anim {
+    20% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    40% {
+        opacity: 0;
+    }
+}
+
+@keyframes w3anim {
+    40% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+}
+
+@keyframes w4anim {
+    60% {
+        opacity: 0;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 0;
+    }
+}
+
+@keyframes w5anim {
+    80% {
+        opacity: 0;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="parent">
+  <div class="typewriter">
+    <h1 class="display-4 text-center main-title">Video Analysis</h1>
+  </div>
+</div>
+<br>
+
+<div class="main-display">
+  <div class= "section emotion-section" data-aos="zoom-in">
+    <h2 class="title">Emotions Indicator</h2>
+    <div class="col">
+      <h3> Pie Chart:</h3>
+
+      <img src="data:image/png;base64, {{ plot_url }}" class="img-fluid" alt="Image Placeholder">
+    </div>
+    <div class="row text-center">
+      <table class="table table-borderless">
+        <thead>&nbsp;</thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3> Smile Index: <div class ="status-content"> <span>{{ smileindex }}</span><span>{{ smileindex }}</span></div></h3>
+            </th>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3>Posture: <div class ="status-content"><span>{{ posture }}</span><span>{{ posture }}</span></div>
+              </h3>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="section music-section" data-aos="zoom-in">
+    <h2 class="title">Music Indicator</h2>
+    <div class="row text-center">
+      <table class="table table-borderless">
+        <thead>&nbsp;</thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3> Music Status: <div class ="status-content"><span>{{ musicStatus }}</span><span>{{ musicStatus }}</span></div></h3> <br>
+              <h3> Music Details: 
+                <br>
+                <h4> Artist: <b>{{ musicDetails[0] }}</b></h4>
+                <h4> Title: <b>{{ musicDetails[1] }}</b></h4>
+              </h3>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="section text-section" data-aos="zoom-in">
+    <h2 class="title">Text Indicator</h2>
+    <div class="row text-center">
+      <table class="table table-borderless">
+        <thead>&nbsp;</thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3> Text Status: <div class ="status-content"><span>{{ textStatus }}</span><span>{{ textStatus }}</span></div></h3>
+              <br>
+                <h4> Text: <b>{{ textDetails }}</b></h4>
+                <!-- <h4> Title: <b>{{ musicDetails[1] }}</b></h4> -->
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="section End-section" data-aos="zoom-in">
+    <h2 class="title">Overall Indicator</h2>
+    <div class="row text-center">
+      <table class="table table-borderless">
+        <thead>&nbsp;</thead>
+        <thead>
+          <tr>
+            <th scope="col">
+              <h3> Overall Results: <div class ="status-content"><span>{{ result }}</span></div></h3>
+              <br>
+            </th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  {% endblock %}

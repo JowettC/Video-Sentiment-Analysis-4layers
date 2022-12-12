@@ -1,4 +1,8 @@
-# MLA-project
+# Video-Sentiment-Analysis
+
+## What the project is about?
+
+
 
 ## How to run the project
 1. Create your python virtual environment - (Optional)

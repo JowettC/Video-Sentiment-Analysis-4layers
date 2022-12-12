@@ -3,6 +3,28 @@
 ## What the project is about?
 ![plot](./overview.jpg)
 
+It is web appication that allows uploading of videos to perform sentiment anaylsis. The possible output labels are [positive, negative, mixed]. 
+
+The video is split into 4 layers (can be reference from the picture above)
+### Audio - music
+1. LinearSVC Model was built using spotify api to get certain engineered features. Has an F1-score of 80%
+2. Uses audd api to identify music before using the model
+
+### Audio - text
+1. Uses speech to text api
+2. uses Voting classifer model. Has an F1-score of 85%~
+
+### object detection
+1. uses Yolov5, best opensource standard out there
+
+### Emotion Analysis
+1. Identify smiling index of face from video
+2. CNN Facial Emotion Detection Model
+
+For more details:
+https://docs.google.com/presentation/d/1jLyBqeoLTSscScPBxedaUsNb95lAfZBWbvQHMSe2Q8c/edit?usp=sharing
+
+
 
 ## How to run the project
 1. Create your python virtual environment - (Optional)

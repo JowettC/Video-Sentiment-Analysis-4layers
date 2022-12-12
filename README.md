@@ -1,7 +1,7 @@
 # Video-Sentiment-Analysis
 
 ## What the project is about?
-
+![plot](./overview.jpg)
 
 
 ## How to run the project
